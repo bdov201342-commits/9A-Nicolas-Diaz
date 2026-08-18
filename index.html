@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - Nico</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="animado">
+    <h1>Mi Portafolio</h1>
+    <nav class="nav-principal">
+      <a href="index.html" class="btn-nav active">Inicio</a>
+      <a href="juego.html" class="btn-nav">Jugar</a>
+      <a href="diario.html" class="btn-nav">Diario</a>
+      <a href="tareas.html" class="btn-nav">Tareas</a>
+    </nav>
+  </header>
+
+  <div class="main-wrapper">
+    <div class="seccion-caja contenedor-principal animado">
+      <div class="contenedor-imagen">
+        <img src="atl.jpg" alt="Foto de Nico">
+      </div>
+     
+      <div class="contenedor-parrafo">
+        <h2 class="p-nombre">Nico</h2>
+        <p class="parrafo">Hola soy Nicolas y me gusta el fútbol, también me gusta dormir mucho. Cuando estoy aburrido me gusta organizar mis cosas mientras escucho música a todo volumen.</p>
+        
+        <div class="botones_1">
+          <a href="juego.html" class="btn-exito">Jugar Snake</a>
+          <a href="diario.html" class="btn">Mi Diario</a>
+          <a href="tareas.html" class="btn">Mis Tareas</a>
+          <button class="btn" id="btn-toggle">Ver Horario</button>
+          <button class="btn" id="btn-color">Modo Hacker</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="seccion-caja horario-container animado" id="seccion-horario">
+      <h2 class="h-titulo">Horario de Clases</h2>
+      <table class="tabla" id="tabla-clases">
+        <thead>
+          <tr>
+            <th>Hora</th><th>Día 1</th><th>Día 2</th><th>Día 3</th><th>Día 4</th><th>Día 5</th><th>Día 6</th><th>Día 7</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>06:45 - 06:50</td>
+            <td>Entrada</td><td>Entrada</td><td>Entrada</td><td>Entrada</td><td>Entrada</td><td>Entrada</td><td>Entrada</td>
+          </tr>
+          <tr>
+            <td>06:50 - 07:45</td>
+            <td>BIOLOGÍA</td><td>ED. FÍSICA</td><td>ESPAÑOL</td><td>FRANCÉS</td><td>BIOLOGÍA</td><td>ED. FÍSICA</td><td>ENGLISH</td>
+          </tr>
+          <tr>
+            <td>07:45 - 08:40</td>
+            <td>MATEMÁTICAS</td><td>SOCIALES</td><td>SOCIALES</td><td>ESPAÑOL</td><td>MATEMÁTICAS</td><td>ENGLISH</td><td>SOCIALES</td>
+          </tr>
+          <tr>
+            <td>08:40 - 09:35</td>
+            <td colspan="7" style="color: var(--accent); font-weight: bold;">Descanso</td>
+          </tr>
+          <tr>
+            <td>09:35 - 10:30</td>
+            <td>ESPAÑOL</td><td>FILOSOFÍA</td><td>MATEMÁTICAS</td><td>INFORMÁTICA</td><td>ENGLISH</td><td>FRANCÉS</td><td>INFORMÁTICA</td>
+          </tr>
+          <tr>
+            <td>10:30 - 11:25</td>
+            <td>SOCIALES</td><td>MATEMÁTICAS</td><td>FÍSICA</td><td>ENGLISH</td><td>SOCIALES</td><td>MATEMÁTICAS</td><td>QUÍMICA</td>
+          </tr>
+          <tr>
+            <td>11:25 - 12:20</td>
+            <td>FRANCÉS</td><td>SKILLS</td><td>DANZAS</td><td>RELIGIÓN</td><td>DIBUJO</td><td>SOCIALES</td><td>BIOLOGÍA</td>
+          </tr>
+          <tr>
+            <td>12:20 - 01:15</td>
+            <td>CÁTEDRA PAZ</td><td>ESPAÑOL</td><td>PILEO</td><td>BIOLOGÍA</td><td>DIBUJO</td><td>PILEO</td><td>ESPAÑOL</td>
+          </tr>
+          <tr>
+            <td>01:15 - 02:10</td>
+            <td>ENGLISH</td><td>ENGLISH</td><td>BIOLOGÍA</td><td>MATEMÁTICAS</td><td>DANZAS</td><td>INFORMÁTICA</td><td>MATEMÁTICAS</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
