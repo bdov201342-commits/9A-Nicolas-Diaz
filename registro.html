@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso - Nico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg-primary:#0a0a1a;--surface:rgba(255,255,255,0.05);--surface-hover:rgba(255,255,255,0.08);--surface-border:rgba(255,255,255,0.1);--glass-bg:rgba(255,255,255,0.06);--glass-border:rgba(255,255,255,0.12);--text-main:#f0f0f5;--text-secondary:#a0a0b8;--text-muted:#6b6b8a;--accent-primary:#7c3aed;--accent-secondary:#06b6d4;--danger:#ef4444;--gradient-primary:linear-gradient(135deg,#7c3aed,#06b6d4);--gradient-bg:linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%);--font-main:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-display:'Space Grotesk','Inter',sans-serif;--shadow-sm:0 2px 8px rgba(0,0,0,0.3);--shadow-md:0 8px 32px rgba(0,0,0,0.4);--shadow-lg:0 16px 48px rgba(0,0,0,0.5);--shadow-glow-purple:0 0 30px rgba(124,58,237,0.3);--transition:all 0.3s cubic-bezier(0.4,0,0.2,1);--radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:24px;--radius-full:9999px}
+        *{margin:0;padding:0;box-sizing:border-box;font-family:var(--font-main)}
+        html{scroll-behavior:smooth}
+        body{background:var(--bg-primary);background:var(--gradient-bg);background-attachment:fixed;color:var(--text-main);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;position:relative}
+        body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 20% 20%,rgba(124,58,237,0.15) 0%,transparent 40%),radial-gradient(circle at 80% 80%,rgba(6,182,212,0.1) 0%,transparent 40%),radial-gradient(circle at 50% 50%,rgba(236,72,153,0.08) 0%,transparent 40%);animation:bgFloat 20s ease-in-out infinite;z-index:0;pointer-events:none}
+        ::selection{background:var(--accent-primary);color:white}
+        ::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:rgba(255,255,255,0.02)}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--accent-primary),var(--accent-secondary));border-radius:4px}
+        @keyframes bgFloat{0%,100%{transform:translate(0,0) rotate(0deg)}33%{transform:translate(30px,-30px) rotate(1deg)}66%{transform:translate(-20px,20px) rotate(-1deg)}}
+        @keyframes slideUpFade{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:translateY(0)}}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+        @keyframes pop{0%{opacity:0;transform:scale(0.6)}100%{opacity:1;transform:scale(1)}}
+        @keyframes textShine{0%{background-position:-200% center}100%{background-position:200% center}}
+        .animado{animation:slideUpFade 0.8s cubic-bezier(0.16,1,0.3,1) both}
+        .auth-body{justify-content:center;align-items:center}
+        .auth-card{background:var(--glass-bg);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-border);width:100%;max-width:460px;padding:48px 40px;border-radius:var(--radius-xl);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,0.08);transition:var(--transition);position:relative;overflow:hidden}
+        .auth-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient-primary)}
+        .auth-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg),var(--shadow-glow-purple);border-color:rgba(124,58,237,0.3)}
+        .auth-header h1{font-family:var(--font-display);font-weight:700;font-size:1.8rem;letter-spacing:-0.5px;margin-bottom:8px;background:var(--gradient-primary);-webkit-background-clip:text;background-clip:text;color:transparent}
+        .auth-header p{color:var(--text-muted);margin-bottom:30px;font-size:0.95rem}
+        .auth-tabs{display:flex;background:var(--surface);border-radius:var(--radius-md);padding:4px;margin-bottom:32px;border:1px solid var(--surface-border)}
+        .tab-btn{flex:1;background:transparent;border:none;color:var(--text-muted);padding:12px 16px;font-size:0.9rem;font-weight:600;border-radius:var(--radius-sm);cursor:pointer;transition:var(--transition)}
+        .tab-btn:hover{color:var(--text-secondary);background:transparent;transform:none;box-shadow:none}
+        .tab-btn.active{background:var(--gradient-primary);color:white;box-shadow:var(--shadow-sm)}
+        .tab-btn:active{transform:none;box-shadow:none}
+        .auth-form{animation:fadeInUp 0.4s cubic-bezier(0.16,1,0.3,1) both}
+        .input-group{margin-bottom:22px}
+        .input-group label{display:block;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;color:var(--text-secondary)}
+        input{width:100%;padding:14px 18px;background:var(--surface);border:1px solid var(--surface-border);color:var(--text-main);font-size:0.95rem;font-weight:400;border-radius:var(--radius-md);transition:var(--transition);font-family:var(--font-main)}
+        input::placeholder{color:var(--text-muted)}
+        input:focus{outline:none;border-color:var(--accent-primary);background:rgba(124,58,237,0.06);box-shadow:0 0 0 3px rgba(124,58,237,0.15)}
+        button{display:inline-block;background:var(--surface);color:var(--text-main);border:1px solid var(--surface-border);padding:12px 24px;cursor:pointer;text-decoration:none;font-size:0.9rem;font-weight:600;border-radius:var(--radius-md);transition:var(--transition);text-align:center;position:relative;overflow:hidden;user-select:none;font-family:var(--font-main)}
+        button:hover{background:var(--surface-hover);border-color:rgba(255,255,255,0.2);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+        button:active{transform:translateY(0);box-shadow:var(--shadow-sm);transition-duration:0.1s}
+        .btn-exito{background:var(--gradient-primary);color:white;border:none;font-weight:700;box-shadow:var(--shadow-sm)}
+        .btn-exito:hover{background:linear-gradient(135deg,#6d28d9,#0891b2);color:white;box-shadow:var(--shadow-glow-purple);transform:translateY(-2px)}
+        .btn-block{width:100%;padding:16px;font-size:1rem;margin-top:10px;border-radius:var(--radius-md)}
+        .msg-error{color:var(--danger);font-size:0.85rem;font-weight:600;margin-bottom:15px;text-align:center;animation:shake 0.4s ease-in-out both}
+        :focus-visible{outline:2px solid var(--accent-primary);outline-offset:2px}
+        @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}}
+    </style>
+</head>
+<body class="auth-body">
+  <div class="auth-card animado">
+    <div class="auth-header">
+      <h1>Portal de Acceso</h1>
+      <p>Regístrate o inicia sesión para acceder a tu portafolio.</p>
+    </div>
+    <div class="auth-tabs">
+      <button id="tab-login" class="tab-btn active" onclick="cambiarTab('login')">Iniciar Sesión</button>
+      <button id="tab-register" class="tab-btn" onclick="cambiarTab('register')">Crear Cuenta</button>
+    </div>
+    <form id="form-login" class="auth-form" onsubmit="iniciarSesion(event)">
+      <div class="input-group"><label>Usuario o Correo</label><input type="text" id="login-usuario" placeholder="Ej: nico" required></div>
+      <div class="input-group"><label>Contraseña</label><input type="password" id="login-password" placeholder="••••••••" required></div>
+      <p id="msg-login" class="msg-error"></p>
+      <button type="submit" class="btn-exito btn-block">Ingresar</button>
+    </form>
+    <form id="form-register" class="auth-form" style="display:none;" onsubmit="registrarUsuario(event)">
+      <div class="input-group"><label>Nombre de Usuario</label><input type="text" id="reg-usuario" placeholder="Ej: nico_2026" required></div>
+      <div class="input-group"><label>Correo Electrónico</label><input type="email" id="reg-email" placeholder="correo@ejemplo.com" required></div>
+      <div class="input-group"><label>Contraseña</label><input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" required minlength="6"></div>
+      <div class="input-group"><label>Confirmar Contraseña</label><input type="password" id="reg-confirm" placeholder="Confirma tu contraseña" required minlength="6"></div>
+      <p id="msg-reg" class="msg-error"></p>
+      <button type="submit" class="btn-exito btn-block">Crear Mi Cuenta</button>
+    </form>
+  </div>
+  <script>
+    const u=localStorage.getItem('usuarioActivo');
+    if(u){window.location.href='index.html';}
+
+    function cambiarTab(tab){
+      document.getElementById('form-login').style.display=tab==='login'?'block':'none';
+      document.getElementById('form-register').style.display=tab==='register'?'block':'none';
+      document.getElementById('tab-login').classList.toggle('active',tab==='login');
+      document.getElementById('tab-register').classList.toggle('active',tab==='register');
+    }
+    function registrarUsuario(e){
+      e.preventDefault();
+      const usuario=document.getElementById('reg-usuario').value.trim();
+      const email=document.getElementById('reg-email').value.trim();
+      const password=document.getElementById('reg-password').value;
+      const confirm=document.getElementById('reg-confirm').value;
+      const msg=document.getElementById('msg-reg');
+      if(password!==confirm){msg.innerText="Las contraseñas no coinciden.";return;}
+      const usuarios=JSON.parse(localStorage.getItem('usuariosApp'))||[];
+      if(usuarios.some(u=>u.usuario.toLowerCase()===usuario.toLowerCase())){msg.innerText="El nombre de usuario ya está registrado.";return;}
+      usuarios.push({usuario,email,password});
+      localStorage.setItem('usuariosApp',JSON.stringify(usuarios));
+      localStorage.setItem('usuarioActivo',usuario);
+      window.location.href='index.html';
+    }
+    function iniciarSesion(e){
+      e.preventDefault();
+      const usuario=document.getElementById('login-usuario').value.trim();
+      const password=document.getElementById('login-password').value;
+      const msg=document.getElementById('msg-login');
+      const usuarios=JSON.parse(localStorage.getItem('usuariosApp'))||[];
+      const userValido=usuarios.find(u=>u.usuario.toLowerCase()===usuario.toLowerCase()&&u.password===password);
+      if(!userValido){msg.innerText="Usuario o contraseña incorrectos.";return;}
+      localStorage.setItem('usuarioActivo',userValido.usuario);
+      window.location.href='index.html';
+    }
+  </script>
+</body>
+</html>
