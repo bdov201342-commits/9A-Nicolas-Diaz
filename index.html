@@ -91,3 +91,814 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+/* ==========================================================================
+   1. IMPORTACIONES Y VARIABLES (Estilo Nike / Clean Minimal)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap');
+
+:root {
+    /* Paleta Monocromática Pura */
+    --bg-color: #ffffff;
+    --text-main: #000000;
+    --text-muted: #666666;
+    --card-bg: #f8f8f8;
+    --border: #e5e5e5;
+    --black-pure: #000000;
+    --white-pure: #ffffff;
+    
+    /* Acentos y Alertas */
+    --accent: #000000;
+    --danger: #ff0000;
+    
+    /* Tipografía y Espaciado */
+    --font-main: 'Inter', -apple-system, sans-serif;
+    --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: radial-gradient(1000px 500px at 50% -10%, rgba(0, 0, 0, 0.04), transparent 70%);
+    background-repeat: no-repeat;
+    color: var(--text-main);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: var(--black-pure);
+    color: var(--white-pure);
+}
+
+/* Scrollbar personalizada (Black & White) */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--card-bg); }
+::-webkit-scrollbar-thumb {
+    background: var(--black-pure);
+    border: 2px solid var(--card-bg);
+}
+::-webkit-scrollbar-thumb:hover { background: #333; }
+
+/* ==========================================================================
+   2. KEYFRAMES (Motor de animaciones)
+   ========================================================================== */
+@keyframes slideUpFade {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-60px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(60px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes flipInX {
+    from { opacity: 0; transform: perspective(600px) rotateX(-60deg); }
+    to { opacity: 1; transform: perspective(600px) rotateX(0); }
+}
+
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.3); }
+    50% { opacity: 1; transform: scale(1.05); }
+    70% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pop {
+    0% { opacity: 0; transform: scale(0.6); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes revealText {
+    0% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); transform: translateY(20px); opacity: 0; }
+    100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translateY(0); opacity: 1; }
+}
+
+@keyframes underlineIn {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+@keyframes growLine {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes textShine {
+    0% { background-position: 0% center; }
+    100% { background-position: -200% center; }
+}
+
+@keyframes canvasGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+    50% { box-shadow: 0 0 40px 6px rgba(0, 0, 0, 0.12); }
+}
+
+@keyframes scanMove {
+    from { background-position: 0 0; }
+    to { background-position: 0 40px; }
+}
+
+@keyframes cellGlow {
+    0%, 100% { color: #0f0; text-shadow: 0 0 0 transparent; }
+    50% { color: #7fff7f; text-shadow: 0 0 8px rgba(0, 255, 0, 0.5); }
+}
+
+/* ==========================================================================
+   3. ANIMACIONES DE ENTRADA (Smooth & Bold)
+   ========================================================================== */
+.animado {
+    animation: slideUpFade 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animado-left   { animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animado-right  { animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animado-zoom   { animation: zoomIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animado-flip   { animation: flipInX 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animado-bounce { animation: bounceIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animado-fade   { animation: fadeIn 1s ease both; }
+
+/* Retrasos escalonados para que los elementos entren uno tras otro */
+header.animado { animation-delay: 0.1s; }
+.auth-card.animado { animation-delay: 0.15s; }
+.seccion-caja:nth-child(1) { animation-delay: 0.2s; }
+.seccion-caja:nth-child(2) { animation-delay: 0.35s; }
+.seccion-caja:nth-child(3) { animation-delay: 0.5s; }
+
+/* Utilidades de retardo (usa con cualquier clase animada) */
+.d-1 { animation-delay: 0.1s; }
+.d-2 { animation-delay: 0.2s; }
+.d-3 { animation-delay: 0.3s; }
+.d-4 { animation-delay: 0.4s; }
+.d-5 { animation-delay: 0.5s; }
+.d-6 { animation-delay: 0.6s; }
+.d-7 { animation-delay: 0.7s; }
+.d-8 { animation-delay: 0.8s; }
+
+/* ==========================================================================
+   4. CABECERA Y NAVEGACIÓN
+   ========================================================================== */
+header {
+    background: var(--white-pure);
+    padding: 30px 40px;
+    border-bottom: 2px solid var(--black-pure); /* Borde grueso, muy deportivo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.04);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 900; /* Letra extra gruesa */
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    animation: revealText 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.nav-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-nav {
+    color: var(--text-muted);
+    padding: 8px 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    transition: var(--transition);
+}
+
+/* Efecto Hover estilo subrayado que crece + separación de letras */
+.btn-nav::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--black-pure);
+    transition: var(--transition);
+}
+
+.btn-nav:hover {
+    color: var(--black-pure);
+    letter-spacing: 2.5px;
+}
+
+.btn-nav:hover::after, .btn-nav.active::after {
+    width: 100%;
+}
+
+.btn-nav.active {
+    color: var(--black-pure);
+}
+
+/* Status Bar Usuario */
+.user-status-bar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--card-bg);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
+}
+
+.btn-logout {
+    color: var(--danger);
+    font-weight: 800;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-logout:hover {
+    background: transparent;
+    color: #d40000;
+    text-decoration: underline;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-logout:active {
+    transform: none;
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   5. SISTEMA DE AUTENTICACIÓN (LOGIN / REGISTRO)
+   ========================================================================== */
+.auth-body {
+    justify-content: center;
+    background: var(--card-bg);
+}
+
+.auth-card {
+    background: var(--white-pure);
+    width: 100%;
+    max-width: 480px;
+    padding: 50px 40px;
+    box-shadow: var(--shadow-subtle);
+    transition: var(--transition);
+}
+
+.auth-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.auth-header h1 {
+    font-weight: 900;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+}
+
+.auth-header p {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+}
+
+.auth-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 30px;
+}
+
+.auth-form {
+    animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.tab-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+}
+
+.tab-btn:hover {
+    background: transparent;
+    color: var(--black-pure);
+    transform: none;
+    box-shadow: none;
+}
+
+.tab-btn:active {
+    transform: none;
+    box-shadow: none;
+}
+
+.tab-btn.active {
+    color: var(--black-pure);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--black-pure);
+    transform-origin: left;
+    animation: underlineIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ==========================================================================
+   6. FORMULARIOS E INPUTS
+   ========================================================================== */
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 15px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--black-pure);
+    font-size: 1rem;
+    font-weight: 400;
+    transition: var(--transition);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--black-pure);
+    background: var(--white-pure);
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   7. BOTONES GLOBALES (Efectos: elevación, presión, brillo "shine")
+   ========================================================================== */
+button, .btn {
+    display: inline-block;
+    background: var(--white-pure);
+    color: var(--black-pure);
+    border: 2px solid var(--black-pure);
+    padding: 12px 24px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+
+button:hover, .btn:hover {
+    background: var(--black-pure);
+    color: var(--white-pure);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+button:active, .btn:active {
+    transform: translateY(1px) scale(0.97);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transition-duration: 0.1s;
+}
+
+/* Brillo que barre el botón al pasar el cursor */
+.btn::before, .btn-exito::before, .btn-peligro::before, .btn-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+}
+
+.btn::before { background: linear-gradient(120deg, transparent, rgba(0, 0, 0, 0.12), transparent); }
+.btn-peligro::before { background: linear-gradient(120deg, transparent, rgba(255, 0, 0, 0.18), transparent); }
+
+.btn:hover::before, .btn-exito:hover::before, .btn-peligro:hover::before, .btn-block:hover::before {
+    left: 130%;
+}
+
+/* Botón Principal (Solid Black) */
+.btn-exito {
+    background: var(--black-pure);
+    color: var(--white-pure);
+}
+
+.btn-exito:hover {
+    background: var(--white-pure);
+    color: var(--black-pure);
+}
+
+.btn-block {
+    width: 100%;
+    padding: 18px;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.btn-peligro {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.btn-peligro:hover {
+    background: var(--danger);
+    color: var(--white-pure);
+}
+
+/* ==========================================================================
+   8. ESTRUCTURA PRINCIPAL Y CONTENEDORES
+   ========================================================================== */
+.main-wrapper {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px; /* Más ancho para aspecto premium */
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.seccion-caja {
+    background: var(--white-pure);
+    padding: 50px;
+    margin-bottom: 40px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-subtle);
+    transition: var(--transition);
+}
+
+.seccion-caja:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--black-pure);
+}
+
+/* Perfil (Imagen + Texto) */
+.contenedor-principal {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+@media (max-width: 768px) {
+    .contenedor-principal { flex-direction: column; text-align: center; }
+    .botones_1 { justify-content: center; }
+    header h1 { font-size: 2rem; }
+    .seccion-caja { padding: 30px 20px; }
+}
+
+.contenedor-imagen {
+    position: relative;
+}
+
+/* Esquinas tipo marco deportivo (Nike) */
+.contenedor-imagen::before,
+.contenedor-imagen::after {
+    content: '';
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border: 3px solid var(--black-pure);
+    z-index: 2;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.contenedor-imagen::before {
+    top: -12px;
+    left: -12px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.contenedor-imagen::after {
+    bottom: -12px;
+    right: -12px;
+    border-left: none;
+    border-top: none;
+}
+
+.contenedor-imagen:hover::before,
+.contenedor-imagen:hover::after {
+    width: 52px;
+    height: 52px;
+}
+
+.contenedor-imagen img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border: 4px solid var(--black-pure); /* Borde grueso agresivo */
+    filter: grayscale(100%); /* Blanco y negro puro */
+    transition: var(--transition);
+    animation: float 6s ease-in-out infinite;
+}
+
+.contenedor-imagen img:hover {
+    animation: none;
+    filter: grayscale(0%);
+    transform: scale(1.05) rotate(1.5deg);
+}
+
+.p-nombre {
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+    background: linear-gradient(90deg, #000 0%, #000 40%, #666 50%, #000 60%, #000 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both,
+               textShine 4s linear 0.8s infinite;
+}
+
+.parrafo {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 600px;
+    animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+
+.botones_1 {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+}
+
+/* ==========================================================================
+   9. TABLAS (HORARIO) Y LISTAS (TAREAS/DIARIO)
+   ========================================================================== */
+.h-titulo {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 12px;
+}
+
+/* Línea negra que crece bajo cada título */
+.h-titulo::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 0;
+    background: var(--black-pure);
+    animation: growLine 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.horario-container { overflow-x: auto; }
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white-pure);
+}
+
+.tabla th, .tabla td {
+    border: 1px solid var(--border);
+    padding: 18px 12px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tabla th {
+    background-color: var(--card-bg);
+    color: var(--black-pure);
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/* Entrada escalonada de filas */
+.tabla tbody tr { animation: fadeIn 0.6s ease both; }
+.tabla tbody tr:nth-child(1) { animation-delay: 0.05s; }
+.tabla tbody tr:nth-child(2) { animation-delay: 0.1s; }
+.tabla tbody tr:nth-child(3) { animation-delay: 0.15s; }
+.tabla tbody tr:nth-child(4) { animation-delay: 0.2s; }
+.tabla tbody tr:nth-child(5) { animation-delay: 0.25s; }
+.tabla tbody tr:nth-child(6) { animation-delay: 0.3s; }
+.tabla tbody tr:nth-child(7) { animation-delay: 0.35s; }
+.tabla tbody tr:nth-child(8) { animation-delay: 0.4s; }
+.tabla tbody tr:nth-child(9) { animation-delay: 0.45s; }
+
+.tabla tr:hover td {
+    background-color: var(--black-pure);
+    color: var(--white-pure);
+    cursor: default;
+}
+
+/* Listas (Tareas y Diario) */
+.lista-item {
+    background: var(--white-pure);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--black-pure); /* Detalle lateral */
+    padding: 25px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    transition: var(--transition);
+    animation: fadeIn 0.5s ease both;
+}
+
+.lista-item:nth-child(2) { animation-delay: 0.08s; }
+.lista-item:nth-child(3) { animation-delay: 0.16s; }
+.lista-item:nth-child(4) { animation-delay: 0.24s; }
+.lista-item:nth-child(5) { animation-delay: 0.32s; }
+.lista-item:nth-child(6) { animation-delay: 0.4s; }
+.lista-item:nth-child(n+7) { animation-delay: 0.48s; }
+
+.lista-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-subtle);
+}
+
+.lista-item h3 { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; }
+.lista-item small { color: var(--text-muted); margin-left: 10px; font-weight: 400; }
+.lista-item p { color: var(--text-muted); font-size: 1rem; margin-top: 10px; }
+.tachado span { text-decoration: line-through; color: var(--border); }
+
+/* ==========================================================================
+   10. JUEGO CANVAS
+   ========================================================================== */
+#gameCanvas {
+    background-color: var(--card-bg);
+    border: 4px solid var(--black-pure);
+    display: block;
+    margin: 0 auto 30px auto;
+    animation: canvasGlow 3s ease-in-out infinite;
+}
+
+#game-over {
+    animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ==========================================================================
+   11. MENSAJES DE ERROR
+   ========================================================================== */
+.msg-error {
+    color: var(--danger);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+    animation: shake 0.4s ease-in-out both;
+}
+
+/* ==========================================================================
+   12. MODO HACKER (CRT / Scanlines)
+   ========================================================================== */
+.modo-hacker {
+    font-family: 'Courier New', monospace !important;
+    position: relative;
+}
+
+.modo-hacker::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    background-image: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 0, 0.08) 0 1px,
+        transparent 1px 4px
+    );
+    animation: scanMove 8s linear infinite;
+}
+
+.modo-hacker th, .modo-hacker td {
+    background-color: #000 !important;
+    color: #0f0 !important;
+    border-color: #030 !important;
+    animation: cellGlow 1.6s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   13. HORARIO: Mostrar/Ocultar con animación (JS añade las clases)
+   ========================================================================== */
+#seccion-horario { display: block; }
+#seccion-horario.oculto { display: none; }
+#seccion-horario.mostrando {
+    animation: zoomIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ==========================================================================
+   14. ACCESIBILIDAD
+   ========================================================================== */
+:focus-visible {
+    outline: 3px solid var(--black-pure);
+    outline-offset: 2px;
+}
+
+/* Respeto a usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
